@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM gitpod/workspace-full-vnc
 
 LABEL Description="This image provides a base Android development environment for React Native, and may be used to run tests."
 
@@ -38,6 +38,13 @@ RUN apt update -qq && apt install -qq -y --no-install-recommends \
         unzip \
     && gem install bundler \
     && rm -rf /var/lib/apt/lists/*;
+
+RUN sudo apt-get update \
+ && sudo apt-get install -y \
+  libasound2-dev \
+  libgtk-3-dev \
+  libnss3-dev \
+ && sudo rm -rf /var/lib/apt/lists/*
 
 # install nodejs and yarn packages from nodesource and yarn apt sources
 RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | bash - \
