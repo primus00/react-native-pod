@@ -36,15 +36,12 @@ RUN apt update -qq && apt install -qq -y --no-install-recommends \
         python3-distutils \
         openssh-client \
         unzip \
+        libasound2-dev \
+          libgtk-3-dev \
+          libnss3-dev \
     && gem install bundler \
     && rm -rf /var/lib/apt/lists/*;
 
-RUN sudo apt-get update \
- && sudo apt-get install -y \
-  libasound2-dev \
-  libgtk-3-dev \
-  libnss3-dev \
- && sudo rm -rf /var/lib/apt/lists/*
 
 # install nodejs and yarn packages from nodesource and yarn apt sources
 RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | bash - \
